@@ -1,0 +1,270 @@
+.mouse-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(224, 169, 109, 0.04) 0%, rgba(224, 169, 109, 0.005) 60%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+}
+
+.footer {
+  background: #111215;
+  border-top: 1px solid rgba(224, 169, 109, 0.06);
+  padding: 3rem 0;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.footer-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dark);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-link:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.cursor {
+  display: inline-block;
+  background-color: var(--accent);
+  margin-left: 2px;
+  width: 3px;
+  height: 1.2em;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  from, to { background-color: transparent }
+  50% { background-color: var(--accent) }
+}
+
+/* Custom Cursor Ring */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s ease,
+              border-color 0.3s ease,
+              opacity 0.2s;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hidden {
+  opacity: 0;
+}
+
+/* Cursor zooming effect */
+.custom-cursor.zoom {
+  width: 38px;
+  height: 38px;
+  background-color: rgba(224, 169, 109, 0.05);
+  border-color: var(--accent);
+}
+
+/* Sticky cursor overlay wrapping active element */
+.custom-cursor.sticky {
+  border-color: var(--accent);
+  background-color: rgba(224, 169, 109, 0.03);
+}
+
+/* Hide default cursor on desktop screens for premium experience, but keep it on mobile */
+@media (min-width: 993px) {
+  body {
+    cursor: none;
+  }
+  a, button, .skill-card-telemetry, .project-card-cyber, .metric-card-telemetry, .social-icon, input, textarea, .timeline-card-cyber, .award-item-cyber {
+    cursor: none !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* Snapping Section Wrapper transitions */
+.section-wrapper {
+  opacity: 0.25;
+  will-change: opacity;
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+}
+
+.section-wrapper.active-section {
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .section-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* Boot Loader Screen styling */
+.boot-loader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #111215;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-mono);
+}
+
+.boot-loader-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(224, 169, 109, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(224, 169, 109, 0.012) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.boot-loader-box {
+  width: 90%;
+  max-width: 480px;
+  background: rgba(22, 23, 28, 0.85);
+  border: 1px solid rgba(224, 169, 109, 0.15);
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.boot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(224, 169, 109, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.boot-tag {
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.boot-pct {
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.boot-logs {
+  height: 145px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.boot-log-row {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.boot-status {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.boot-text {
+  color: var(--text-main);
+}
+
+.active-log .boot-status {
+  color: var(--accent);
+}
+
+.blink {
+  animation: blink-loader 1s step-end infinite;
+}
+
+@keyframes blink-loader {
+  50% { opacity: 0; }
+}
+
+.boot-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.boot-fill {
+  height: 100%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transition: width 0.08s linear;
+}
