@@ -1,0 +1,207 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3.5rem;
+}
+
+.contact-info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-info-summary h3 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.contact-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-info-card-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(13, 17, 24, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.05);
+  padding: 1.25rem;
+  border-radius: 2px;
+  position: relative;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.contact-info-card-telemetry:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
+}
+
+.contact-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 240, 255, 0.03);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  color: var(--accent);
+  border-radius: 2px;
+}
+
+.contact-details h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.15rem;
+}
+
+.contact-details p {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.copy-btn-cyber {
+  background: transparent;
+  border: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  padding: 0.2rem;
+  margin-left: 0.5rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn-cyber:hover {
+  color: var(--accent);
+}
+
+.copy-tooltip-cyber {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  background: rgba(0, 240, 255, 0.08);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Payloads terminal card (Right Side) */
+.contact-form-card-cyber {
+  background: rgba(11, 14, 20, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.08);
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.form-card-header {
+  border-bottom: 1px solid rgba(0, 240, 255, 0.08);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.header-icon-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group-cyber {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group-cyber label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.cli-symbol {
+  color: var(--primary);
+  margin-right: 0.25rem;
+}
+
+.form-group-cyber input,
+.form-group-cyber textarea {
+  background: rgba(8, 10, 15, 0.6);
+  border: 1px solid rgba(0, 240, 255, 0.08);
+  color: var(--text-main);
+  padding: 0.7rem 0.9rem;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+
+.form-group-cyber input::placeholder,
+.form-group-cyber textarea::placeholder {
+  color: var(--text-dark);
+}
+
+.form-group-cyber input:focus,
+.form-group-cyber textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(8, 10, 15, 0.95);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.08);
+}
+
+.form-success-msg-cyber {
+  padding: 0.75rem;
+  border-radius: 2px;
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
