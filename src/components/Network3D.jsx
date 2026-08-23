@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Line } from '@react-three/drei';
 import * as THREE from 'three';
@@ -337,17 +337,17 @@ const ServerPacket = ({ start, end, speed = 0.35, delay = 0 }) => {
   );
 };
 
-const ServerMesh = () => {
+const ServerMesh = ({ position = [0, 0, -0.8], rotationSpeed = 0.08, scale = [1.15, 1.15, 1.15] }) => {
   const groupRef = useRef();
 
   useFrame((state) => {
     if (!groupRef.current) return;
     const t = state.clock.getElapsedTime();
     // Rotate slowly to show 3D depth of servers
-    groupRef.current.rotation.y = t * 0.08;
+    groupRef.current.rotation.y = t * rotationSpeed;
     groupRef.current.rotation.x = Math.sin(t * 0.04) * 0.04;
     // Slow float
-    groupRef.current.position.y = Math.sin(t * 0.3) * 0.12;
+    groupRef.current.position.y = position[1] + Math.sin(t * 0.3) * 0.12;
   });
 
   const nodes = [
@@ -368,7 +368,7 @@ const ServerMesh = () => {
   ];
 
   return (
-    <group ref={groupRef} position={[0, 0, -0.8]} scale={[1.15, 1.15, 1.15]}>
+    <group ref={groupRef} position={position} scale={scale}>
       {/* Connection Edges and moving data traffic packets */}
       {edges.map((edge, idx) => (
         <React.Fragment key={`s-edge-${idx}`}>
@@ -387,15 +387,34 @@ const ServerMesh = () => {
 };
 
 export function NetworkBackgroundCanvas() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 992);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, pointerEvents: 'none', opacity: 0.5 }}>
-      <Canvas camera={{ position: [0, 0, 4.5], fov: 60 }}>
+      <Canvas camera={{ position: [0, 0, 5.2], fov: 60 }}>
         <ambientLight intensity={0.5} />
         {/* Tilted bottom grid (infrastructure mesh) */}
         <DataMeshWave position={[0, -2.1, -1]} rotation={[-Math.PI / 2.1, 0, Math.PI / 6]} />
-
-        {/* 3D Server Mesh representing backend systems in the middle */}
-        <ServerMesh />
+        
+        {isMobile ? (
+          /* On mobile, float a single centered mesh behind the card */
+          <ServerMesh position={[0, 0, -1.2]} scale={[0.7, 0.7, 0.7]} rotationSpeed={0.06} />
+        ) : (
+          /* On desktop, frame both sides of the terminal card with fully visible node meshes */
+          <>
+            <ServerMesh position={[-2.0, 0.2, -0.8]} scale={[0.65, 0.65, 0.65]} rotationSpeed={0.06} />
+            <ServerMesh position={[2.0, -0.2, -0.8]} scale={[0.65, 0.65, 0.65]} rotationSpeed={-0.05} />
+          </>
+        )}
 
         {/* Tilted top grid (application network mesh) */}
         <DataMeshWave position={[0, 2.1, -1]} rotation={[Math.PI / 2.1, 0, Math.PI / 6]} />
