@@ -1,0 +1,317 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 100px;
+  /* offset navbar double row */
+  overflow: hidden;
+}
+
+.hero-centered-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-content-centered {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Console Terminal Window styling */
+.console-terminal {
+  background: rgba(22, 23, 28, 0.75);
+  border: 1px solid rgba(224, 169, 109, 0.08);
+  border-radius: 4px;
+  box-shadow: inset 0 0 20px rgba(224, 169, 109, 0.01), 0 10px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  position: relative;
+}
+
+.terminal-header {
+  background: #18191e;
+  border-bottom: 1px solid rgba(224, 169, 109, 0.08);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red {
+  background: #ff4a5a;
+  opacity: 0.6;
+}
+
+.dot-yellow {
+  background: #ffbc00;
+  opacity: 0.6;
+}
+
+.dot-green {
+  background: #9cad8a;
+  opacity: 0.6;
+}
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.terminal-lang {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--primary);
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.terminal-diagnostics {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  padding-bottom: 0.75rem;
+}
+
+.prompt-row {
+  color: var(--text-main);
+  display: flex;
+  gap: 0.4rem;
+}
+
+.prompt-row::before {
+  content: '>';
+  color: var(--accent);
+}
+
+.terminal-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-greeting {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+}
+
+.hero-title-interactive {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Roboto Flex', var(--font-family);
+  font-size: 4.2rem;
+  font-weight: 100;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  line-height: 1.1;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.02);
+}
+
+.variable-letter {
+  display: inline-block;
+  font-variation-settings: 'wght' 100, 'wdth' 30, 'ital' 0;
+  will-change: font-variation-settings;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  transform-origin: bottom center;
+}
+
+.variable-letter:hover {
+  color: var(--accent);
+  text-shadow: 0 0 25px var(--accent-glow);
+}
+
+.hero-subtitle {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  min-height: 25px;
+}
+
+.cursor-prompt {
+  font-weight: 700;
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+.terminal-actions-prompt {
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Ports row (socials) */
+.terminal-ports-row {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.port-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-dark);
+  letter-spacing: 0.08em;
+}
+
+.hero-socials {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.social-icon {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.01);
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  color: var(--accent);
+  border-color: rgba(224, 169, 109, 0.2);
+  background: rgba(224, 169, 109, 0.02);
+}
+
+.icon-name {
+  font-size: 0.65rem;
+  opacity: 0.75;
+}
+
+/* Telemetry Bounding Frame for 3D Visual */
+.telemetry-frame {
+  border: 1px solid rgba(79, 83, 92, 0.2);
+  background: rgba(17, 18, 21, 0.4);
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.telemetry-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+.telemetry-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.frame-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dark);
+  border-bottom: 1px dashed rgba(79, 83, 92, 0.2);
+  padding: 0.4rem 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.frame-footer {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dark);
+  border-top: 1px dashed rgba(79, 83, 92, 0.2);
+  padding: 0.3rem 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.hero-visual {
+  width: 100%;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .hero {
+    min-height: auto;
+    padding: 7rem 0 3rem 0;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .terminal-ports-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
