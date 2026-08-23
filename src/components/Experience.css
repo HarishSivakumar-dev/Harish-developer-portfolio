@@ -1,0 +1,223 @@
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
+}
+
+.exp-section-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+/* Git Log Chronology timeline */
+.timeline-cyber {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 1px dashed rgba(0, 240, 255, 0.15);
+  margin-left: 0.5rem;
+}
+
+.timeline-item-cyber {
+  position: relative;
+}
+
+.timeline-dot-cyber {
+  position: absolute;
+  left: -29px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  border: 2px solid var(--bg-color);
+  transition: var(--transition);
+}
+
+.timeline-item-cyber:hover .timeline-dot-cyber {
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  transform: scale(1.25);
+}
+
+.timeline-card-cyber {
+  background: rgba(13, 17, 24, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.05);
+  border-radius: 2px;
+  padding: 1.25rem;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.timeline-card-cyber:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.commit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.commit-hash {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.commit-status {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.time-period {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.timeline-card-cyber h4 {
+  font-size: 1rem;
+  font-weight: 750;
+  color: var(--text-main);
+}
+
+.institution {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.timeline-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Diagnostic Awards Panel */
+.awards-list-cyber {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.award-item-cyber {
+  display: flex;
+  gap: 1rem;
+  background: rgba(13, 17, 24, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.05);
+  border-radius: 2px;
+  padding: 1rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.award-item-cyber:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.award-icon-box {
+  display: flex;
+  align-items: flex-start;
+  color: var(--primary);
+  margin-top: 0.2rem;
+}
+
+.award-details h4 {
+  font-size: 0.9rem;
+  font-weight: 750;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.award-badge-meta {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0.15rem 0;
+  letter-spacing: 0.02em;
+}
+
+.award-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Credentials section */
+.certs-section-cyber {
+  margin-top: 2.5rem;
+}
+
+.certs-grid-cyber {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.cert-card-cyber {
+  background: rgba(11, 14, 20, 0.6);
+  border: 1px solid rgba(0, 240, 255, 0.04);
+  padding: 0.75rem;
+  border-radius: 2px;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cert-card-cyber:hover {
+  border-color: var(--accent);
+  background: rgba(0, 240, 255, 0.01);
+}
+
+.cert-card-header {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-dark);
+  border-bottom: 1px dashed rgba(70, 86, 104, 0.15);
+  padding-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.cert-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.cert-issuer {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 992px) {
+  .exp-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
