@@ -1,0 +1,103 @@
+.back-to-top-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 55px;
+  height: 55px;
+  background: rgba(20, 22, 28, 0.85);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 9999;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(224, 169, 109, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* Subtle tech notches/lines on top/bottom of button */
+.btn-decor {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(224, 169, 109, 0.2);
+  transition: background 0.25s ease;
+}
+
+.decor-top {
+  top: 0;
+  border-bottom: 1px solid rgba(224, 169, 109, 0.3);
+}
+
+.decor-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(224, 169, 109, 0.3);
+}
+
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.btn-icon {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.25s ease;
+}
+
+.btn-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+/* Hover effects */
+.back-to-top-btn:hover {
+  background: rgba(224, 169, 109, 0.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow), inset 0 0 8px rgba(224, 169, 109, 0.15);
+}
+
+.back-to-top-btn:hover .btn-icon {
+  transform: translateY(-3px);
+  color: var(--text-main);
+}
+
+.back-to-top-btn:hover .btn-label {
+  color: var(--accent);
+}
+
+.back-to-top-btn:hover .btn-decor {
+  background: var(--accent);
+}
+
+/* Active pressing state */
+.back-to-top-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsiveness: on smaller screens make it sit nicely */
+@media (max-width: 480px) {
+  .back-to-top-btn {
+    bottom: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .btn-label {
+    display: none;
+  }
+}
