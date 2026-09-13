@@ -49,23 +49,35 @@ export default function Chatbot() {
     setIsTyping(true);
 
     try {
+      const endpoints = [
+        'http://localhost:8080/api/v1/chat/send',
+        '/api/v1/chat/send',
+        'http://localhost:8080/v1/chat/send',
+        'http://localhost:8080/api/chat/send'
+      ];
+
       let response;
-      try {
-        response = await fetch('/api/v1/chat/send', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: text }),
-        });
-      } catch (err) {
-        response = await fetch('http://localhost:8080/api/v1/chat/send', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: text }),
-        });
+      for (const url of endpoints) {
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: text }),
+          });
+          if (res.ok) {
+            response = res;
+            break;
+          }
+          response = res;
+        } catch (err) {
+          // Network error, try next candidate
+        }
+      }
+
+      if (!response) {
+        throw new Error('Network failure: Unable to reach backend server at http://localhost:8080');
       }
 
       let botResponseText = '';
