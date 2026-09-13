@@ -210,7 +210,7 @@ export default function Chatbot() {
           </div>
           
           <div className="chat-disclaimer">
-            Powered by Spring Boot RAG (Frontend mock)
+            Powered by Spring Boot RAG Engine
           </div>
         </div>
       )}
