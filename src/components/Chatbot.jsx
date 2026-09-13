@@ -48,31 +48,42 @@ export default function Chatbot() {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate Spring Boot RAG response flow
-    setTimeout(() => {
-      let botResponseText = "";
-      const query = text.toLowerCase();
-
-      if (query.includes('skill') || query.includes('techn') || query.includes('language')) {
-        botResponseText = "Harish specializes in robust backend architectures. His core skills include Java, Spring Boot, Microservices, Apache Kafka, Redis, Nginx, Docker, SQL, and Python.";
-      } else if (query.includes('tick-it') || query.includes('project') || query.includes('tickit')) {
-        botResponseText = "Harish's flagship project is 'Tick-It', a Spring Boot microservice ticketing platform handling 10k+ concurrent users, featuring Apache Kafka streams and Redis caches.";
-      } else if (query.includes('intern') || query.includes('job') || query.includes('hire') || query.includes('open')) {
-        botResponseText = "Yes! Harish is actively open to backend engineering internships, ECE research pathways, and DevOps pipelines. Contact him directly at harishss.2k07@gmail.com.";
-      } else {
-        botResponseText = "That's a great question! Once I am hooked up to Harish's Spring Boot RAG backend later, I will dynamically retrieve precise answers from his papers, databases, and ECE curriculum.";
+    try {
+      let response;
+      try {
+        response = await fetch('/api/v1/chat/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: text }),
+        });
+      } catch (err) {
+        response = await fetch('http://localhost:8080/api/v1/chat/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: text }),
+        });
       }
 
-      const botMessage = {
-        id: Date.now() + 1,
-        sender: 'bot',
-        text: botResponseText,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      };
+      // Simulate Spring Boot RAG response flow
+      setTimeout(() => {
+        let botResponseText = "Connected to backend.";
+        const botMessage = {
+          id: Date.now() + 1,
+          sender: 'bot',
+          text: botResponseText,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
 
-      setMessages((prev) => [...prev, botMessage]);
+        setMessages((prev) => [...prev, botMessage]);
+        setIsTyping(false);
+      }, 1200);
+    } catch (e) {
       setIsTyping(false);
-    }, 1200);
+    }
   };
 
   const handleKeyDown = (e) => {
