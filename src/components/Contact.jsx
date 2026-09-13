@@ -203,6 +203,16 @@ const Contact = () => {
                     STATUS // SUCCESS: Payload transmitted to server
                   </motion.div>
                 )}
+
+                {error && (
+                  <motion.div
+                    className="form-error-msg-cyber"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                  >
+                    STATUS // ERROR: {error}
+                  </motion.div>
+                )}
               </form>
             </div>
           </motion.div>
