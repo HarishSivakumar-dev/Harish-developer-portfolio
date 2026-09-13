@@ -68,19 +68,32 @@ export default function Chatbot() {
         });
       }
 
-      // Simulate Spring Boot RAG response flow
-      setTimeout(() => {
-        let botResponseText = "Connected to backend.";
-        const botMessage = {
-          id: Date.now() + 1,
-          sender: 'bot',
-          text: botResponseText,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        };
+      let botResponseText = '';
+      if (!response.ok) {
+        const errText = await response.text().catch(() => '');
+        botResponseText = `Error ${response.status}: ${errText || 'Failed to get response from AI backend.'}`;
+      } else {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const data = await response.json();
+          if (typeof data === 'string') {
+            botResponseText = data;
+          } else if (data && typeof data === 'object') {
+            botResponseText = data.message || data.response || data.reply || data.answer || data.content || data.result || JSON.stringify(data);
+          }
+        } else {
+          botResponseText = await response.text();
+        }
+      }
 
-        setMessages((prev) => [...prev, botMessage]);
-        setIsTyping(false);
-      }, 1200);
+      const botMessage = {
+        id: Date.now() + 1,
+        sender: 'bot',
+        text: botResponseText || 'No response received from backend.',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
     } catch (e) {
       setIsTyping(false);
     }
