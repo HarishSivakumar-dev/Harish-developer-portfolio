@@ -134,7 +134,7 @@ export default function Chatbot() {
               <div className="status-dot"></div>
               <div>
                 <h4 className="assistant-title">Harish's Assistant</h4>
-                <span className="status-text">AI Agent (Offline/Simulated)</span>
+                <span className="status-text">AI Agent (Spring Boot Connected)</span>
               </div>
             </div>
             <button className="chat-close" onClick={() => setIsOpen(false)} aria-label="Close chat">
