@@ -94,7 +94,16 @@ export default function Chatbot() {
       };
 
       setMessages((prev) => [...prev, botMessage]);
-    } catch (e) {
+    } catch (error) {
+      console.error('AI Chat backend error:', error);
+      const errorMessage = {
+        id: Date.now() + 1,
+        sender: 'bot',
+        text: 'Unable to connect to the backend server at http://localhost:8080/api/v1/chat/send. Please verify the backend is running.',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
     }
   };
