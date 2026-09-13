@@ -8,6 +8,7 @@ const Contact = () => {
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('harishss.2k07@gmail.com');
@@ -20,19 +21,41 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setLoading(true);
+    setSubmitted(false);
+    setError(null);
 
-    // Simulate backend submission delay
-    setTimeout(() => {
+    try {
+      const response = await fetch('http://localhost:8080/api/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        const errText = await response.text().catch(() => '');
+        setError(errText || `Server Error: HTTP ${response.status}`);
+      }
+    } catch (err) {
+      console.error('Contact submission error:', err);
+      setError('Connection failed: Unable to reach backend server at http://localhost:8080');
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1200);
+    }
   };
 
   return (
@@ -177,7 +200,7 @@ const Contact = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                   >
-                    STATUS // SUCCESS: Payload transmitted to harishss.2k07@gmail.com
+                    STATUS // SUCCESS: Payload transmitted to server
                   </motion.div>
                 )}
               </form>
