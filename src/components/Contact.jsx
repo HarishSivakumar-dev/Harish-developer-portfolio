@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Copy, Check, Terminal, Send } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 import './Contact.css';
 
 const Contact = () => {
@@ -30,7 +31,7 @@ const Contact = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8080/api/email/send', {
+      const response = await fetch(`${API_BASE_URL}/api/email/send`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ const Contact = () => {
       }
     } catch (err) {
       console.error('Contact submission error:', err);
-      setError('Connection failed: Unable to reach backend server at http://localhost:8080');
+      setError(`Connection failed: Unable to reach backend server at ${API_BASE_URL}`);
     } finally {
       setLoading(false);
     }

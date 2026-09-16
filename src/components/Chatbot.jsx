@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, Sparkles, Bot, User } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 import './Chatbot.css';
 
 const SUGGESTIONS = [
@@ -50,10 +51,10 @@ export default function Chatbot() {
 
     try {
       const endpoints = [
-        'http://localhost:8080/api/v1/chat/send',
+        `${API_BASE_URL}/api/v1/chat/send`,
         '/api/v1/chat/send',
-        'http://localhost:8080/v1/chat/send',
-        'http://localhost:8080/api/chat/send'
+        `${API_BASE_URL}/v1/chat/send`,
+        `${API_BASE_URL}/api/chat/send`
       ];
 
       let response;
@@ -77,7 +78,7 @@ export default function Chatbot() {
       }
 
       if (!response) {
-        throw new Error('Network failure: Unable to reach backend server at http://localhost:8080');
+        throw new Error(`Network failure: Unable to reach backend server at ${API_BASE_URL}`);
       }
 
       let botResponseText = '';
@@ -111,7 +112,7 @@ export default function Chatbot() {
       const errorMessage = {
         id: Date.now() + 1,
         sender: 'bot',
-        text: 'Unable to connect to the backend server at http://localhost:8080/api/v1/chat/send. Please verify the backend is running.',
+        text: `Unable to connect to the backend server at ${API_BASE_URL}/api/v1/chat/send. Please verify the backend is running.`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages((prev) => [...prev, errorMessage]);
