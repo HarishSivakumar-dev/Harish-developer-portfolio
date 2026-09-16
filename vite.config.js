@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://harish-dev-backend-v1.onrender.com',
+        target: 'https://harish-dev-backend-v2.onrender.com',
         changeOrigin: true,
         secure: true,
       },
