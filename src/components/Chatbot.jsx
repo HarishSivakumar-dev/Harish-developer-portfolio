@@ -15,7 +15,7 @@ export default function Chatbot() {
     {
       id: 1,
       sender: 'bot',
-      text: "Hi! I'm Harish's AI assistant. Ask me anything about his projects, skills, or academic background!",
+      text: "Hi! I'm Lana, Harish's AI assistant. Ask me anything about his projects, skills, or background!",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -78,13 +78,13 @@ export default function Chatbot() {
       }
 
       if (!response) {
-        throw new Error(`Network failure: Unable to reach backend server at ${API_BASE_URL}`);
+        throw new Error('Network failure: Unable to reach assistant server.');
       }
 
       let botResponseText = '';
       if (!response.ok) {
         const errText = await response.text().catch(() => '');
-        botResponseText = `Error ${response.status}: ${errText || 'Failed to get response from AI backend.'}`;
+        botResponseText = 'Sorry, unable to process request right now. Please try again.';
       } else {
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
@@ -102,7 +102,7 @@ export default function Chatbot() {
       const botMessage = {
         id: Date.now() + 1,
         sender: 'bot',
-        text: botResponseText || 'No response received from backend.',
+        text: botResponseText || 'No response received. Please try again.',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
@@ -112,7 +112,7 @@ export default function Chatbot() {
       const errorMessage = {
         id: Date.now() + 1,
         sender: 'bot',
-        text: `Unable to connect to the backend server at ${API_BASE_URL}/api/v1/chat/send. Please verify the backend is running.`,
+        text: 'Sorry, I am currently unable to process your request. Please try again later.',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -133,7 +133,7 @@ export default function Chatbot() {
       <button 
         className={`chatbot-trigger ${isOpen ? 'active' : ''}`} 
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle AI Assistant Chat"
+        aria-label="Toggle Lana AI Assistant Chat"
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </button>
@@ -144,10 +144,9 @@ export default function Chatbot() {
           {/* Header */}
           <div className="chat-header">
             <div className="header-info">
-              <div className="status-dot"></div>
               <div>
-                <h4 className="assistant-title">Harish's Assistant</h4>
-                <span className="status-text">AI Agent (Spring Boot Connected)</span>
+                <h4 className="assistant-title">Lana</h4>
+                <span className="status-text">AI Assistant</span>
               </div>
             </div>
             <button className="chat-close" onClick={() => setIsOpen(false)} aria-label="Close chat">
@@ -223,7 +222,7 @@ export default function Chatbot() {
           </div>
           
           <div className="chat-disclaimer">
-            Powered by Spring Boot RAG Engine
+            Lana AI Assistant
           </div>
         </div>
       )}
